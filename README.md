@@ -12,7 +12,7 @@
 - Uso de Fly.io y PlanetScale
 
 
-## Dependenciass
+## Dependencias
 
 
 | Dependencia | Versión     |
