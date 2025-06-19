@@ -9,6 +9,7 @@
 - Spring Boot (Java 17)
 - Maven
 - Base de datos AWS RDS `MySQL 8.0.41`
+- Instancia EC2
 
 
 ## Dependencias
