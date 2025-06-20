@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.iespark</groupId>
-	<artifactId>urlshortering</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>urlshortering</name>
+	<artifactId>urlshortener</artifactId>
+	<version>0.0.1</version>
+	<name>urlshortener</name>
 	<description>URL shortering proyect on Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
