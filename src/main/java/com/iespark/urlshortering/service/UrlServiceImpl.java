@@ -71,4 +71,11 @@ public class UrlServiceImpl implements UrlService {
         urlRepository.delete(url);
 
     }
+
+    @Override
+    public Url updateUrlVisits(Url url){
+        url.setTotalVisits(url.getTotalVisits() + 1);
+        Url urlToRet = urlRepository.save(url);
+        return urlToRet;
+    }
 }
