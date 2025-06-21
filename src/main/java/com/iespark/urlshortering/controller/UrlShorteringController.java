@@ -38,7 +38,8 @@ public class UrlShorteringController {
     }
 
     @GetMapping("/{shortLink}")
-    public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String shortLink, HttpServletResponse response) throws IOException {
+    public ResponseEntity<?> redirectToOriginalUrl(@PathVariable String shortLink, HttpServletResponse response)
+            throws IOException {
         if(StringUtils.isEmpty(shortLink)){
             UrlErrorResponseDto urlErrorResponseDto = new UrlErrorResponseDto();
             urlErrorResponseDto.setError("Url Invalida");
@@ -60,6 +61,13 @@ public class UrlShorteringController {
             urlErrorResponseDto.setError("Url ha expirado");
             urlErrorResponseDto.setStatus("200");
             return new ResponseEntity<UrlErrorResponseDto>(urlErrorResponseDto, HttpStatus.OK);
+        }
+
+        // Actualizar numero de visitas
+        try {
+            urlToRet = urlService.updateUrlVisits(urlToRet);
+        }catch (Exception e){
+            // Actualizar log: no se pudo actualizar visitas
         }
 
         response.sendRedirect(urlToRet.getOriginalUrl());
