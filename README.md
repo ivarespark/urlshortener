@@ -14,7 +14,6 @@
 
 ## Dependencias
 
-
 | Dependencia     | Versión  |
 |:----------------|:---------|
 | Spring-boot     | `3.2.1`  |
@@ -33,4 +32,17 @@ spring.datasource.username=[user-database]
 spring.datasource.password=[user-password]
 spring.jpa.hibernate.ddl-auto=none
 ```
+
+## Base de Datos
+- Crear DB `dburlstn` (nombre opcional)
+- Crear tabla `tbl_url`
+
+| Campo         | Tipo Dato   | Longitud |
+|:--------------|:------------|:----------|
+| l_id          | `bigint`    |
+| c_originalurl | `varchar`   | 2048 |
+| c_shortlink   | `varchar`   | 50 |
+| d_creation    | `datetime`  |
+| d_expiration  | `datetime`  |
+| l_visits      | `int`       |
 
