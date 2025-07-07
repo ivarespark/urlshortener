@@ -30,7 +30,8 @@ Crear en carpeta `/resources` archivo `application.properties` con la siguiente 
 spring.datasource.url=jdbc:mysql://[url-instancia/database]
 spring.datasource.username=[user-database]
 spring.datasource.password=[user-password]
-spring.jpa.hibernate.ddl-auto=none
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.datasource-platform=org.hibernate.dialect.MySQL8Dialect
 ```
 
 ## Base de Datos
