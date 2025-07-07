@@ -7,9 +7,9 @@
 ## Características
 
 - Spring Boot (Java 17)
-- Maven
-- Base de datos AWS RDS `MySQL 8.0.41`
-- Instancia EC2
+- Maven `4.0.0`
+- Base de datos `MySQL 8.0`
+- Microservicio y db dockerizados
 
 
 ## Dependencias
@@ -24,28 +24,30 @@
 
 ## Necesarios
 
-Crear en carpeta `/resources` archivo `application.properties` con la siguiente información:
+Ejecutar Docker desktop.
 
+Crear archivo `.env` en la raiz del proyecto con la siguiente información (sin braces):
 ```bash
-spring.datasource.url=jdbc:mysql://[url-instancia/database]
-spring.datasource.username=[user-database]
-spring.datasource.password=[user-password]
-spring.datasource.drive-class-name=com.mysql.cj.jdbc.Driver
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.datasource-platform=org.hibernate.dialect.MySQL8Dialect
+SPRING_DATASOURCE_USERNAME={Usuario conexion db}
+SPRING_DATASOURCE_PASSWORD={Password conexion db}
+SPRING_DATASOURCE_URL={Ejemplo: jdbc:mysql://db:3306/nombrebasedatos}
+MYSQL_ROOT_PASSWORD={Password root}
+MYSQL_DATABASE={nombrebasedatos}
+MYSQL_USER=={Usuario conexion db}
+MYSQL_PASSWORD={Password conexion db}
 ```
+Estos datos son usados por los archivos: `application.properties` y `docker-compose.yml` 
 
 ## Base de Datos
-- Crear DB `dburlstn` (nombre opcional)
-- Crear tabla `tbl_url`
+- La base de datos se crea automáticamente con el nombre `{nombrebasedatos}` del archivo `.env`
+- La tabla `tbl_url` se crean automáticamente con los siguientes datos:
 
-| Campo         | Tipo Dato   | Longitud |
-|:--------------|:------------|:----------|
-| l_id          | `bigint`    |
-| c_originalurl | `varchar`   | 2048 |
-| c_shortlink   | `varchar`   | 50 |
-| d_creation    | `datetime`  |
-| d_expiration  | `datetime`  |
-| l_visits      | `int`       |
+| Campo         | Tipo Dato  | Longitud |
+|:--------------|:-----------|:----------|
+| l_id          | `bigint`   |
+| c_originalurl | `varchar`  | 2048 |
+| c_shortlink   | `varchar`  | 50 |
+| d_creation    | `datetime` |
+| d_expiration  | `datetime` |
+| l_visits      | `bigint`   |
 
