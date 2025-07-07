@@ -7,9 +7,9 @@
 ## Características
 
 - Spring Boot (Java 17)
-- Maven
-- Base de datos AWS RDS `MySQL 8.0.41`
-- Instancia EC2
+- Maven `4.0.0`
+- Base de datos `MySQL 8.0`
+- Microservicio y db dockerizados
 
 
 ## Dependencias
@@ -22,27 +22,44 @@
 | Google Guava    | `20.0`   |
 
 
-## Necesarios
+## Configuración
 
-Crear en carpeta `/resources` archivo `application.properties` con la siguiente información:
-
+Crear archivo `.env` en la raiz del proyecto con la siguiente información (sin braces):
 ```bash
-spring.datasource.url=jdbc:mysql://[url-instancia/database]
-spring.datasource.username=[user-database]
-spring.datasource.password=[user-password]
-spring.jpa.hibernate.ddl-auto=none
+SPRING_DATASOURCE_USERNAME={Usuario conexion db}
+SPRING_DATASOURCE_PASSWORD={Password conexion db}
+SPRING_DATASOURCE_URL={Ejemplo: jdbc:mysql://db:3306/nombrebasedatos}
+MYSQL_ROOT_PASSWORD={Password root}
+MYSQL_DATABASE={nombrebasedatos}
+MYSQL_USER=={Usuario conexion db}
+MYSQL_PASSWORD={Password conexion db}
+```
+Estos datos son usados por los archivos: `application.properties` y `docker-compose.yml` 
+
+## Ejecución
+
+- Iniciar Docker desktop.
+
+
+- Ejecutar en bash:
+```bash
+docker-compose up --build
+```
+- Si hay problemas ejecutar al ejecutar compose:
+```bash
+docker-compose down
 ```
 
 ## Base de Datos
-- Crear DB `dburlstn` (nombre opcional)
-- Crear tabla `tbl_url`
+- La base de datos se crea en la ejecución con el nombre `{nombrebasedatos}` del archivo `.env`
+ 
+- La tabla `tbl_url` se crea en la ejecución con los siguientes datos:
 
-| Campo         | Tipo Dato   | Longitud |
-|:--------------|:------------|:----------|
-| l_id          | `bigint`    |
-| c_originalurl | `varchar`   | 2048 |
-| c_shortlink   | `varchar`   | 50 |
-| d_creation    | `datetime`  |
-| d_expiration  | `datetime`  |
-| l_visits      | `int`       |
-
+| Campo         | Tipo Dato  | Longitud |
+|:--------------|:-----------|:----------|
+| l_id          | `bigint`   |
+| c_originalurl | `varchar`  | 2048 |
+| c_shortlink   | `varchar`  | 50 |
+| d_creation    | `datetime` |
+| d_expiration  | `datetime` |
+| l_visits      | `bigint`   |
