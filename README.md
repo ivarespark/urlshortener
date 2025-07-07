@@ -22,9 +22,7 @@
 | Google Guava    | `20.0`   |
 
 
-## Necesarios
-
-Ejecutar Docker desktop.
+## Configuración
 
 Crear archivo `.env` en la raiz del proyecto con la siguiente información (sin braces):
 ```bash
@@ -38,9 +36,24 @@ MYSQL_PASSWORD={Password conexion db}
 ```
 Estos datos son usados por los archivos: `application.properties` y `docker-compose.yml` 
 
+## Ejecución
+
+- Iniciar Docker desktop.
+
+
+- Ejecutar en bash:
+```bash
+docker-compose up --build
+```
+- Si hay problemas ejecutar al ejecutar compose:
+```bash
+docker-compose down
+```
+
 ## Base de Datos
-- La base de datos se crea automáticamente con el nombre `{nombrebasedatos}` del archivo `.env`
-- La tabla `tbl_url` se crean automáticamente con los siguientes datos:
+- La base de datos se crea en la ejecución con el nombre `{nombrebasedatos}` del archivo `.env`
+ 
+- La tabla `tbl_url` se crea en la ejecución con los siguientes datos:
 
 | Campo         | Tipo Dato  | Longitud |
 |:--------------|:-----------|:----------|
@@ -50,4 +63,3 @@ Estos datos son usados por los archivos: `application.properties` y `docker-comp
 | d_creation    | `datetime` |
 | d_expiration  | `datetime` |
 | l_visits      | `bigint`   |
-
